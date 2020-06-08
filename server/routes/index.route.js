@@ -3,6 +3,10 @@ const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');
 const districtRoutes = require('./district.route');
 const houseRoutes = require('./house.route');
+const hostRoutes = require('./host.route');
+const imageRoutes = require('./image.route');
+const roomRoutes = require('./room.route');
+const facilityRoutes = require('./facility.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -15,5 +19,9 @@ router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
 router.use('/district', districtRoutes);
 router.use('/house', houseRoutes);
+router.use('/image', imageRoutes);
+router.use('/host', hostRoutes);
+router.use('/room', roomRoutes);
+router.use('/facility', facilityRoutes);
 
 module.exports = router;

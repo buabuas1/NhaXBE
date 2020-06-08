@@ -5,11 +5,14 @@ const HouseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  HostId : {
+    type: Number
+  },
   Name : {
     type: String,
     required: true
   },
-  Adress : {
+  Address : {
     type: String,
   },
   RoomNumber : {
