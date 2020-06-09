@@ -19,7 +19,9 @@ const app = express();
 if (config.env === 'development') {
   app.use(logger('dev'));
 }
-
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors());
+app.options('*', cors());
 // Choose what fronten framework to serve the dist from
 var distDir = '../../dist/';
 if (config.frontend == 'react'){
@@ -28,7 +30,7 @@ if (config.frontend == 'react'){
   distDir ='../../dist/' ;
  }
 
-// 
+//
 app.use(express.static(path.join(__dirname, distDir)))
 app.use(/^((?!(api)).)*/, (req, res) => {
   res.sendFile(path.join(__dirname, distDir + '/index.html'));
@@ -39,7 +41,7 @@ console.log(distDir);
 app.use(express.static(path.join(__dirname, '../../node_modules/material-dashboard-react/dist')))
 app.use(/^((?!(api)).)*/, (req, res) => {
 res.sendFile(path.join(__dirname, '../../dist/index.html'));
-}); 
+});
 
 
 app.use(bodyParser.json());
@@ -51,9 +53,6 @@ app.use(methodOverride());
 
 // secure apps by setting various HTTP headers
 app.use(helmet());
-
-// enable CORS - Cross Origin Resource Sharing
-app.use(cors());
 
 app.use(passport.initialize());
 
