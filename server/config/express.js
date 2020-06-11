@@ -21,7 +21,6 @@ if (config.env === 'development') {
 }
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
-app.options('*', cors());
 // Choose what fronten framework to serve the dist from
 var distDir = '../../dist/';
 if (config.frontend == 'react'){
