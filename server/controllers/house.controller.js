@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const House = require('../models/house.model');
+const imgCtrl = require('./image.controller');
+const hostCtrl = require('./host.controller');
 
 const houseSchema = Joi.object({
   DistrictId: Joi.string().required(),
@@ -15,12 +17,31 @@ module.exports = {
 }
 
 async function insert(house) {
-  house = await Joi.validate(house, houseSchema, { abortEarly: false });
+  house = await Joi.validate(house, houseSchema, {abortEarly: false});
   return await new House(house).save();
 }
 
 async function getList() {
-  const houses = House.find();
-  return await houses;
+  let houses = await House.find();
+  houses = JSON.parse(JSON.stringify(houses));
+  // image
+  const imgIds = houses.map((h) => h.AvatarId);
+  let imgs = await imgCtrl.getList(imgIds);
+  imgs = JSON.parse(JSON.stringify(imgs));
+  // host
+  const hostIds = houses.map((h) => h.HostId);
+  let hosts = await hostCtrl.getById(hostIds);
+  hosts =  JSON.parse(JSON.stringify(hosts));
+  houses = houses.map((d) => {
+    const img = imgs.find(i => i._id === d.AvatarId);
+    const host = hosts.find(i => i._id === d.HostId);
+
+    return {...d,
+      AvatarUrl: img ? img.Url : '',
+      Host: host ? host : null
+    }
+
+  })
+  return houses;
 }
 

@@ -18,6 +18,18 @@ const RoomSchema = new mongoose.Schema({
   },
   Images: {
     type: Array
+  },
+  AvatarId: {
+    type: String
+  },
+  AvatarUrl: {
+    type: String
+  },
+  PriceFrom: {
+    type: Number
+  },
+  PriceTo: {
+    type: Number
   }
 }, {
   versionKey: false

@@ -6,7 +6,7 @@ const HouseSchema = new mongoose.Schema({
     required: true
   },
   HostId : {
-    type: Number
+    type: String
   },
   Name : {
     type: String,
@@ -17,7 +17,13 @@ const HouseSchema = new mongoose.Schema({
   },
   RoomNumber : {
     type: Number
-  }
+  },
+  AvatarId: {
+    type: String,
+  },
+  AvatarUrl: {
+    type: String,
+  },
 }, {
   versionKey: false
 });

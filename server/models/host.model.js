@@ -8,6 +8,12 @@ const HostSchema = new mongoose.Schema({
   Name : {
     type: String,
     required: true
+  },
+  PriceFrom: {
+    type: Number
+  },
+  PriceTo: {
+    type: Number
   }
 }, {
   versionKey: false

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const Image = require('../models/image.model');
+const mongoose = require('mongoose');
 
 const imageSchema = Joi.object({
   Url: Joi.string().required()
@@ -16,8 +17,9 @@ async function insert(img) {
   return await new Image(img).save();
 }
 
-async function getList() {
-  const arr = Image.find();
+async function getList(imgIds) {
+  const obj_ids = imgIds.map(function(id) { return mongoose.Types.ObjectId(id); });
+  const arr = Image.find({_id: {$in: obj_ids}});
   return await arr;
 }
 

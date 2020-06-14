@@ -11,6 +11,12 @@ const DistrictSchema = new mongoose.Schema({
   HouseNumber : {
     type: Number
   },
+  ImageId: {
+    type: String
+  },
+  ImageUrl: {
+    type: String
+  }
 }, {
   versionKey: false
 });

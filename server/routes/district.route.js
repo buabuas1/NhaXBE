@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const asyncHandler = require('express-async-handler');
 const districtCtrl = require('../controllers/district.controller');
+const imgCtrl = require('../controllers/image.controller');
 
 const router = express.Router();
 module.exports = router;

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const District = require('../models/district.model');
+const imgCtrl = require('./image.controller');
 
 const districtSchema = Joi.object({
   Name: Joi.string().required(),
@@ -19,7 +20,22 @@ async function insert(district) {
 }
 
 async function getList() {
-  const districts = District.find();
-  return await districts;
+  let districts = await District.find();
+  districts = JSON.parse(JSON.stringify(districts));
+  const imgIds = districts.map((d) => {
+    return d.ImageId;
+  })
+  let imgs = await imgCtrl.getList(imgIds);
+  imgs = JSON.parse(JSON.stringify(imgs));
+  districts = districts.map((d) => {
+    const img = imgs.find(i => i._id === d.ImageId);
+    if (!img) {
+      return d;
+    } else {
+      return {...d, ImageUrl: img.Url}
+    }
+
+  })
+  return districts;
 }
 
