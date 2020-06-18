@@ -21,6 +21,6 @@ async function insert(req, res) {
 }
 
 async function getList(req, res) {
-  let arr = await ctrl.getList(req.body);
+  let arr = await ctrl.getList(req);
   res.json(arr);
 }

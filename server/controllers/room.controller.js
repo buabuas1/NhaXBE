@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const mongoose = require('mongoose');
 const Room = require('../models/room.model');
 const imgCtrl = require('./image.controller');
 
@@ -17,8 +18,9 @@ async function insert(room) {
   return await new Room(room).save();
 }
 
-async function getList() {
-  let rooms = await Room.find();
+async function getList(body) {
+  const {houseId} = body.query;
+  let rooms = houseId ? await Room.find({HouseId: mongoose.Types.ObjectId(houseId)}) : await Room.find();
   rooms = JSON.parse(JSON.stringify(rooms));
   const imgIds = rooms.reduce((acc, cur) => [...acc, ...cur.Images, cur.AvatarId], []);
   let imgs = await imgCtrl.getList(imgIds);

@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const mongoose = require('mongoose');
 const House = require('../models/house.model');
 const imgCtrl = require('./image.controller');
 const hostCtrl = require('./host.controller');
@@ -7,7 +8,7 @@ const hostCtrl = require('./host.controller');
 const houseSchema = Joi.object({
   DistrictId: Joi.string().required(),
   Name: Joi.string(),
-  Adress: Joi.string(),
+  Address: Joi.string(),
   RoomNumber: Joi.number()
 })
 
@@ -21,8 +22,9 @@ async function insert(house) {
   return await new House(house).save();
 }
 
-async function getList() {
-  let houses = await House.find();
+async function getList(body) {
+  const {districtId} = body.query;
+  let houses = districtId ? await  House.find({DistrictId: mongoose.Types.ObjectId(districtId)}) : await  House.find();
   houses = JSON.parse(JSON.stringify(houses));
   // image
   const imgIds = houses.map((h) => h.AvatarId);

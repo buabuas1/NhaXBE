@@ -21,6 +21,6 @@ async function insert(req, res) {
 }
 
 async function getList(req, res) {
-  let houses = await houseCtrl.getList(req.body);
+  let houses = await houseCtrl.getList(req);
   res.json(houses);
 }
