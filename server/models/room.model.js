@@ -30,6 +30,18 @@ const RoomSchema = new mongoose.Schema({
   },
   PriceTo: {
     type: Number
+  },
+  ElectricPrice: {
+    type: Number
+  },
+  WaterPrice: {
+    type: Number
+  },
+  InternetPrice: {
+    type: Number
+  },
+  Description: {
+    type: String
   }
 }, {
   versionKey: false
