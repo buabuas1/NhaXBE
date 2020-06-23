@@ -7,6 +7,7 @@ const hostRoutes = require('./host.route');
 const imageRoutes = require('./image.route');
 const roomRoutes = require('./room.route');
 const facilityRoutes = require('./facility.route');
+const trendingRoomRoutes = require('./trending-room.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -22,6 +23,7 @@ router.use('/house', houseRoutes);
 router.use('/image', imageRoutes);
 router.use('/host', hostRoutes);
 router.use('/room', roomRoutes);
+router.use('/trendingroom', trendingRoomRoutes);
 router.use('/facility', facilityRoutes);
 
 module.exports = router;
