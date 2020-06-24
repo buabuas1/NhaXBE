@@ -32,7 +32,7 @@ if (config.frontend == 'react'){
 //
 app.use(express.static(path.join(__dirname, distDir)))
 app.use(/^((?!(api)).)*/, (req, res) => {
-  res.sendFile('/index.html');
+  res.sendFile('./index.html');
 });
 
 console.log('distDir: ', distDir);
