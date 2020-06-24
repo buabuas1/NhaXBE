@@ -32,17 +32,17 @@ if (config.frontend == 'react'){
 //
 app.use(express.static(path.join(__dirname, distDir)))
 app.use(/^((?!(api)).)*/, (req, res) => {
-  res.sendFile(path.join(__dirname, distDir + '/index.html'));
+  res.sendFile('/index.html');
 });
 
 console.log('distDir: ', distDir);
 console.log('__dirname: ', __dirname);
 console.log('full: ', path.join(__dirname, distDir + '/index.html'));
  //React server
-app.use(express.static(path.join(__dirname, '../../node_modules/material-dashboard-react/dist')))
-app.use(/^((?!(api)).)*/, (req, res) => {
-res.sendFile(path.join(__dirname, '../../dist/index.html'));
-});
+// app.use(express.static(path.join(__dirname, '../../node_modules/material-dashboard-react/dist')))
+// app.use(/^((?!(api)).)*/, (req, res) => {
+// res.sendFile(path.join(__dirname, '../../dist/index.html'));
+// });
 
 
 app.use(bodyParser.json());
