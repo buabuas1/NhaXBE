@@ -31,9 +31,17 @@ if (config.frontend == 'react'){
 
 //
 app.use(express.static(path.join(__dirname, distDir)))
-app.use(/^((?!(api)).)*/, (req, res) => {
-  res.sendFile(path.join(__dirname, distDir + '/index.html'));
-});
+console.log('config.envFile', config.envFile);
+if (config.envFile === 'hrk') {
+  app.use(/^((?!(api)).)*/, (req, res) => {
+    res.sendFile('./index.html');
+  });
+} else {
+  app.use(/^((?!(api)).)*/, (req, res) => {
+    res.sendFile(path.join(__dirname, distDir + '/index.html'));
+  });
+}
+
 
 console.log('distDir: ', distDir);
 console.log('__dirname: ', __dirname);
