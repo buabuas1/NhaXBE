@@ -31,30 +31,18 @@ if (config.frontend == 'react'){
 
 //
 app.use(express.static(path.join(__dirname, distDir)))
-
-if (config.envFile == 'hrk') {
-  app.use(/^((?!(api)).)*/, (req, res) => {
-    res.sendFile('./index.html');
-  });
-  console.log('config.envFile: ', 'hrk-hrk');
-  console.log('serve file from: ', './index.html');
-} else {
-  app.use(/^((?!(api)).)*/, (req, res) => {
-    res.sendFile(path.join(__dirname, distDir + '/index.html'));
-  });
-  console.log('config.envFile: ', config.envFile);
-  console.log('serve file from: ', path.join(__dirname, distDir + '/index.html'));
-}
-
+app.use(/^((?!(api)).)*/, (req, res) => {
+  res.sendFile(path.join(__dirname, distDir + '/index.html'));
+});
 
 console.log('distDir: ', distDir);
 console.log('__dirname: ', __dirname);
 console.log('full: ', path.join(__dirname, distDir + '/index.html'));
  //React server
 app.use(express.static(path.join(__dirname, '../../node_modules/material-dashboard-react/dist')))
-// app.use(/^((?!(api)).)*/, (req, res) => {
-// res.sendFile(path.join(__dirname, '../../dist/index.html'));
-// });
+app.use(/^((?!(api)).)*/, (req, res) => {
+res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
 
 
 app.use(bodyParser.json());
