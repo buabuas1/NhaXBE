@@ -19,8 +19,8 @@ async function insert(room) {
 }
 
 async function getList(body) {
-  const {houseId} = body.query;
-  let rooms = houseId ? await Room.find({HouseId: mongoose.Types.ObjectId(houseId)}) : await Room.find();
+  const {HouseId} = body.query;
+  let rooms = HouseId ? await Room.find({HouseId: mongoose.Types.ObjectId(HouseId)}) : await Room.find();
   rooms = JSON.parse(JSON.stringify(rooms));
   const imgIds = rooms.reduce((acc, cur) => [...acc, ...cur.Images, cur.AvatarId], []);
   let imgs = await imgCtrl.getList(imgIds);
