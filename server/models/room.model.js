@@ -42,7 +42,10 @@ const RoomSchema = new mongoose.Schema({
   },
   Description: {
     type: String
-  }
+  },
+  Position: {
+    type: Number
+  },
 }, {
   versionKey: false
 });

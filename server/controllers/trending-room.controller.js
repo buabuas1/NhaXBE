@@ -57,6 +57,13 @@ async function getList(body) {
     r.House = h;
     return r;
   })
+  rooms = rooms.sort((r1, r2) => {
+    if ((r1.Position || 100) < (r2.Position || 100)) {
+      return -1;
+    } else {
+      return 1;
+    }
+  })
   return rooms;
 }
 
