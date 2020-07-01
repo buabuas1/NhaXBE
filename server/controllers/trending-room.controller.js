@@ -23,23 +23,13 @@ async function insert(room) {
 
 async function getList(body) {
 
-  let roomIds = await TrendingRoom.find();
-  roomIds = JSON.parse(JSON.stringify(roomIds)).map(r => r.RoomId);
+  let trending = await TrendingRoom.find();
+  let roomIds = JSON.parse(JSON.stringify(trending)).map(r => r.RoomId);
   let rooms = await Room.find({_id: {$in: roomIds}});
   rooms = JSON.parse(JSON.stringify(rooms));
   const imgIds = rooms.reduce((acc, cur) => [...acc, ...cur.Images, cur.AvatarId], []);
   let imgs = await imgCtrl.getList(imgIds);
   imgs = JSON.parse(JSON.stringify(imgs));
-  rooms = rooms.map((d) => {
-    const img = imgs.filter(i => d.Images && d.Images.indexOf(i._id) !== -1);
-    const avatar = imgs.find(i => d.AvatarId === i._id);
-    if (!img || img.length === 0) {
-      return d;
-    } else {
-      return {...d, ImageUrls: img, AvatarUrl: avatar ? avatar.Url : img[0].Url}
-    }
-
-  })
   let houseIds = rooms.map(r => r.HouseId);
   let houses = await House.find({_id: {$in: houseIds}});
   houses = JSON.parse(JSON.stringify(houses));
@@ -52,13 +42,30 @@ async function getList(body) {
       Host: host ? host : null
     }
   })
-  rooms = rooms.map(r => {
-    const h = houses.find(ho => ho._id === r.HouseId);
-    r.House = h;
-    return r;
+
+  rooms = rooms.map((d) => {
+    const img = imgs.filter(i => d.Images && d.Images.indexOf(i._id) !== -1);
+    const avatar = imgs.find(i => d.AvatarId === i._id);
+    const h = houses.find(ho => ho._id === d.HouseId);
+    const p = trending.find(t => t.RoomId === d._id);
+    if (!img || img.length === 0) {
+      return {...d,
+        House: h,
+        Position: p.Position || 999
+      }
+    } else {
+      return {...d,
+        ImageUrls: img,
+        AvatarUrl: avatar ? avatar.Url : img[0].Url,
+        House: h,
+        Position: p.Position || 999
+      }
+    }
+
   })
+
   rooms = rooms.sort((r1, r2) => {
-    if ((r1.Position || 100) < (r2.Position || 100)) {
+    if ((r1.Position || 999) < (r2.Position || 999)) {
       return -1;
     } else {
       return 1;

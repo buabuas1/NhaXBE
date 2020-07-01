@@ -4,7 +4,10 @@ const TrendingRoomSchema = new mongoose.Schema({
   RoomId : {
     type: String,
     required: true
-  }
+  },
+  Position: {
+    type: Number
+  },
 }, {
   versionKey: false
 });
