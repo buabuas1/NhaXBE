@@ -46,6 +46,9 @@ const RoomSchema = new mongoose.Schema({
   Position: {
     type: Number
   },
+  IsActive: {
+    type: Boolean
+  },
 }, {
   versionKey: false
 });

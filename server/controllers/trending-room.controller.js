@@ -17,7 +17,7 @@ module.exports = {
 }
 
 async function insert(room) {
-  room = await Joi.validate(room, roomSchema, { abortEarly: false });
+  room = await Joi.validate(room, roomSchema, {abortEarly: false});
   return await new TrendingRoom(room).save();
 }
 
@@ -25,7 +25,13 @@ async function getList(body) {
 
   let trending = await TrendingRoom.find();
   let roomIds = JSON.parse(JSON.stringify(trending)).map(r => r.RoomId);
-  let rooms = await Room.find({_id: {$in: roomIds}});
+  let rooms = await Room.find({
+    $and:
+      [
+        {IsActive: {$eq: true}},
+        {_id: {$in: roomIds}}
+      ]
+  });
   rooms = JSON.parse(JSON.stringify(rooms));
   const imgIds = rooms.reduce((acc, cur) => [...acc, ...cur.Images, cur.AvatarId], []);
   let imgs = await imgCtrl.getList(imgIds);
@@ -35,10 +41,11 @@ async function getList(body) {
   houses = JSON.parse(JSON.stringify(houses));
   const hostIds = houses.map((h) => h.HostId);
   let hosts = await hostCtrl.getById(hostIds);
-  hosts =  JSON.parse(JSON.stringify(hosts));
+  hosts = JSON.parse(JSON.stringify(hosts));
   houses = houses.map((d) => {
     const host = hosts.find(i => i._id === d.HostId);
-    return {...d,
+    return {
+      ...d,
       Host: host ? host : null
     }
   })
@@ -49,12 +56,14 @@ async function getList(body) {
     const h = houses.find(ho => ho._id === d.HouseId);
     const p = trending.find(t => t.RoomId === d._id);
     if (!img || img.length === 0) {
-      return {...d,
+      return {
+        ...d,
         House: h,
         Position: p.Position || 999
       }
     } else {
-      return {...d,
+      return {
+        ...d,
         ImageUrls: img,
         AvatarUrl: avatar ? avatar.Url : img[0].Url,
         House: h,

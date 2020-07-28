@@ -20,7 +20,15 @@ async function insert(room) {
 
 async function getList(body) {
   const {HouseId} = body.query;
-  let rooms = HouseId ? await Room.find({HouseId: mongoose.Types.ObjectId(HouseId)}) : await Room.find();
+  let rooms = HouseId ? await Room.find({
+    $and:
+      [
+        {IsActive: {$eq: true}},
+        {HouseId: mongoose.Types.ObjectId(HouseId)}
+      ]
+  }) : await Room.find({
+    IsActive: true
+  });
   rooms = JSON.parse(JSON.stringify(rooms));
   const imgIds = rooms.reduce((acc, cur) => [...acc, ...cur.Images, cur.AvatarId], []);
   let imgs = await imgCtrl.getList(imgIds);
