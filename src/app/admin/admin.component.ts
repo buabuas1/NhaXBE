@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "@app/shared/services/user/user.service";
 
 @Component({
   selector: 'app-admin',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
-  public ngOnInit() {
+  public async ngOnInit() {
+    let user = await this.userService.getListUser();
+    console.log(user);
   }
 }
 

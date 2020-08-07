@@ -20,6 +20,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 @NgModule({
   exports: [
     FormsModule,
@@ -42,6 +46,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatExpansionModule,
     MatFormFieldModule,
     MatProgressBarModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    GridModule
   ],
 })
 export class SharedModule {}

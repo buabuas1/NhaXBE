@@ -5,7 +5,7 @@ import { AdminComponent } from './admin.component';
 import { OnlyAdminUsersGuard } from './admin-user-guard';
 
 const routes: Routes = [{
-  path: 'admin',
+  path: '',
   canActivate: [OnlyAdminUsersGuard],
   children: [{
     path: '',
