@@ -21,7 +21,8 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@progress/kendo-theme-default/dist/all.css"
             ],
             "scripts": []
           },

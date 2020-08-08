@@ -1,6 +1,9 @@
 <header>
   <mat-toolbar color="primary">
     <a routerLink="/" class="logo"></a>
+    <div>
+      <kendo-menu [items]="items" (select)="onSelect($event)"></kendo-menu>
+    </div>
     <span class="example-spacer"></span>
     <a class="links side" routerLink="/auth/login" *ngIf="!user">Login</a>
     <div>

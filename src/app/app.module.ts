@@ -12,13 +12,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
+import {MenuModule} from "@progress/kendo-angular-menu";
 
 export function appInitializerFactory(authService: AuthService) {
   return () => authService.checkTheUserOnTheFirstLoad();
 }
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule],
+  imports: [BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule,
+    MenuModule
+  ],
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   providers: [
     {

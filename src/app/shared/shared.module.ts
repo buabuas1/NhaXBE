@@ -23,6 +23,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
+import {MenusModule} from "@progress/kendo-angular-menu";
 
 @NgModule({
   exports: [
@@ -48,7 +49,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
     MatProgressBarModule,
     BrowserModule,
     BrowserAnimationsModule,
-    GridModule
+    GridModule,
+    MenusModule
   ],
 })
 export class SharedModule {}
