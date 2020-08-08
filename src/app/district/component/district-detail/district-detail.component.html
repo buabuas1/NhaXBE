@@ -1,5 +1,4 @@
 <div>
-  <label>{{district?._id ? 'Sửa Quận' : 'Thêm mới Quận'}}</label>
   <div class="input-group">
     <label>Tên: </label>
     <input [(ngModel)]="district.Name">
@@ -17,8 +16,8 @@
     <input [(ngModel)]="district.ImageUrl">
   </div>
   <div class="modal-footer">
-    <a class="btn btn-gray" (click)="onSave()"><i class="fa fa-check-square float-left"></i><span translate>Lưu</span></a>
-    <a class="btn btn-success" (click)="onDelete()"><i class="fa fa-check-square"></i><span translate>Thực hiện</span></a>
-    <a class="btn btn-default" (click)="onClose()"><i class="fa fa-ban"></i><span translate>Bỏ qua</span></a>
+    <a class="btn btn-success" (click)="onSave()"><i class="fa fa-check-square float-left"></i><span translate>Lưu</span></a>
+    <a class="btn btn-danger" (click)="onDelete()"><i class="fa fa-check-square"></i><span translate>Xóa</span></a>
+    <a class="btn btn-light" (click)="onClose()"><i class="fa fa-ban"></i><span translate>Bỏ qua</span></a>
   </div>
 </div>

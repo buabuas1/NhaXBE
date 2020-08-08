@@ -10,10 +10,22 @@ export class DistrictDetailComponent implements OnInit {
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() district!: District
+  @Input() district: District = {}
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSave() {
+    this.submit.next(this.district);
+  }
+
+  onDelete() {
+
+  }
+
+  onClose() {
+    this.close.emit();
+  }
 }

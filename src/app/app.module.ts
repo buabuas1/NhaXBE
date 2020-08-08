@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
 import {MenuModule} from "@progress/kendo-angular-menu";
+import {ToastrModule} from "ng6-toastr-notifications";
 
 export function appInitializerFactory(authService: AuthService) {
   return () => authService.checkTheUserOnTheFirstLoad();
@@ -20,7 +21,7 @@ export function appInitializerFactory(authService: AuthService) {
 
 @NgModule({
   imports: [BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule,
-    MenuModule
+    MenuModule, ToastrModule.forRoot()
   ],
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   providers: [

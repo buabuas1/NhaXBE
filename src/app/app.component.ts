@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -6,6 +6,7 @@ import { merge, Observable } from 'rxjs';
 
 import { User } from './shared/interfaces';
 import { AuthService } from './shared/services';
+import {ToastrManager} from "ng6-toastr-notifications";
 
 @Component({
   selector: 'app-root',
@@ -23,9 +24,12 @@ export class AppComponent {
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
-    private authService: AuthService
+    private authService: AuthService,
+    public toastr: ToastrManager,
+    private vcr: ViewContainerRef
   ) {
     this.registerSvgIcons();
+      // this.toastr.setRootViewContainerRef(vcr);
   }
 
   registerSvgIcons() {

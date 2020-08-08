@@ -3,7 +3,7 @@ const util = require('util');
 const debug = require('debug')('express-mongoose-es6-rest-api:index');
 
 const config = require('./config');
-
+// mongoose.set('useFindAndModify', false);
 // connect to mongo db
 const mongoUri = config.mongo.host;
 mongoose.connect(mongoUri, { keepAlive: 1 });

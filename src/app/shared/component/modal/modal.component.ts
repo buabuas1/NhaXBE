@@ -12,8 +12,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap';
-// @ts-ignore
-import * as R from 'ramda';
+import * as R from 'ramda'
 import {ModalConfig} from "@app/shared/services/modal/modal-config.modal";
 
 @Component({

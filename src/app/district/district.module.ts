@@ -7,6 +7,7 @@ import {GridModule} from "@progress/kendo-angular-grid";
 import {ModalService} from "@app/shared/services/modal/modal.service";
 import { DistrictDetailComponent } from './component/district-detail/district-detail.component';
 import {FormsModule} from "@angular/forms";
+import {LoggerService} from "@app/shared/services/logger/logger.service";
 
 
 
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     ],
   providers: [
     OnlyAdminUsersGuard,
-    ModalService
+    ModalService,
+    LoggerService
   ]
 })
 export class DistrictModule { }

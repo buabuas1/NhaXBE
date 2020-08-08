@@ -3,6 +3,7 @@ import {District} from "@app/shared/interfaces";
 import {DistrictService} from "@app/shared/services";
 import {ModalService} from "@app/shared/services/modal/modal.service";
 import {DistrictDetailComponent} from "@app/district/component/district-detail/district-detail.component";
+import {LoggerService} from "@app/shared/services/logger/logger.service";
 
 @Component({
   selector: 'app-district',
@@ -13,7 +14,9 @@ export class DistrictComponent implements OnInit {
   public districts: District[] = [];
 
   constructor(private districtService: DistrictService,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private loggerService: LoggerService
+  ) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -22,7 +25,7 @@ export class DistrictComponent implements OnInit {
 
   onAddDistrict(item: District) {
     this.modalService.openModal({
-      title: 'Cập nhật Quận',
+      title: 'Thêm Quận',
       component: DistrictDetailComponent,
       // isCustomModalHeader: true,
       inputs: [{ key: 'department', value: item }],
@@ -38,8 +41,10 @@ export class DistrictComponent implements OnInit {
       component: DistrictDetailComponent,
       // isCustomModalHeader: true,
       inputs: [{ key: 'district', value: item.dataItem }],
-      onSubmit: async () => {
+      onSubmit: async (district: District) => {
+        await this.districtService.save(district);
         await this.reloadGrid();
+        this.loggerService.success('Thành công');
       }
     }, { class: 'modal-lg modal-title-status 11', backdrop: 'static' });
   }
