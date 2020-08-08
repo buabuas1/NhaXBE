@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RoomComponent } from './room.component';
-import {RoomRoutingModule} from "@app/room/room-routing.module";
+import { ImageComponent } from './image.component';
+import {ImageRoutingModule} from "@app/image/image-routing.module";
 import {OnlyAdminUsersGuard} from "@app/admin/admin-user-guard";
 
 
 
 @NgModule({
-  declarations: [RoomComponent],
+  declarations: [ImageComponent],
   imports: [
     CommonModule,
-    RoomRoutingModule
+    ImageRoutingModule
   ],
   providers: [
     OnlyAdminUsersGuard
   ]
 })
-export class RoomModule { }
+export class ImageModule { }

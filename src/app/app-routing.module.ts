@@ -22,6 +22,22 @@ const routes: Routes = [
     path: 'house',
     loadChildren: () => import('./house/house.module').then(m => m.HouseModule),
   },
+  {
+    path: 'room',
+    loadChildren: () => import('./room/room.module').then(m => m.RoomModule),
+  },
+  {
+    path: 'host',
+    loadChildren: () => import('./host/host.module').then(m => m.HostModule),
+  },
+  {
+    path: 'image',
+    loadChildren: () => import('./image/image.module').then(m => m.ImageModule),
+  },
+  {
+    path: 'district',
+    loadChildren: () => import('./district/district.module').then(m => m.DistrictModule),
+  },
 ];
 
 @NgModule({

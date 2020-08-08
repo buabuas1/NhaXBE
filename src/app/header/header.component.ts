@@ -25,6 +25,10 @@ export class HeaderComponent {
     {
       text: 'Danh sách Ảnh',
       path: '/image'
+    },
+    {
+      text: 'Danh sách Quận',
+      path: '/district'
     }
   ];
 
