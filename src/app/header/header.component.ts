@@ -17,7 +17,7 @@ export class HeaderComponent {
     path: '/house'
   }, {
     text: 'Danh sách Phòng',
-    path: 'room'
+    path: '/room'
   }, {
     text: 'Danh sách Chủ nhà',
     path: '/host'
