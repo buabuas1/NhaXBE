@@ -1,15 +1,15 @@
 <h4>Danh sách Quận</h4>
+<button class="k-button" (click)="onAddDistrict()">Thêm mới Quận</button>
 <kendo-grid
-  [data]="district"
+  [data]="districts"
   [pageSize]="10"
   [skip]="0"
   [sortable]="true"
   [pageable]="true"
   scrollable="none"
+  (cellClick)="onOpenDetail($event)"
 >
   <kendo-grid-column field="_id" width="130"></kendo-grid-column>
-  <kendo-grid-column field="fullname" width="200"></kendo-grid-column>
-  <kendo-grid-column field="email" width="200"></kendo-grid-column>
-  <kendo-grid-column field="createdAt" [sortable]="false"></kendo-grid-column>
-  <kendo-grid-column field="roles" [sortable]="false"></kendo-grid-column>
+  <kendo-grid-column field="Name" width="200"></kendo-grid-column>
+  <kendo-grid-column field="ImageUrl" width="200"></kendo-grid-column>
 </kendo-grid>

@@ -1,0 +1,24 @@
+<div>
+  <label>{{district?._id ? 'Sửa Quận' : 'Thêm mới Quận'}}</label>
+  <div class="input-group">
+    <label>Tên: </label>
+    <input [(ngModel)]="district.Name">
+  </div>
+  <div class="input-group">
+    <label>Số nhà:</label>
+    <input [(ngModel)]="district.HouseNumber">
+  </div>
+  <div class="input-group">
+    <label>Số phòng:</label>
+    <input [(ngModel)]="district.RoomNumber">
+  </div>
+  <div class="input-group">
+    <label>Link ảnh đại diện:</label>
+    <input [(ngModel)]="district.ImageUrl">
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-gray" (click)="onSave()"><i class="fa fa-check-square float-left"></i><span translate>Lưu</span></a>
+    <a class="btn btn-success" (click)="onDelete()"><i class="fa fa-check-square"></i><span translate>Thực hiện</span></a>
+    <a class="btn btn-default" (click)="onClose()"><i class="fa fa-ban"></i><span translate>Bỏ qua</span></a>
+  </div>
+</div>

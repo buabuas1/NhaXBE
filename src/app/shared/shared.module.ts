@@ -24,6 +24,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import {MenusModule} from "@progress/kendo-angular-menu";
+import { ModalComponent } from './component/modal/modal.component';
+import { ConfirmComponent } from './component/confirm/confirm.component';
+import {BsModalService, ModalModule} from "ngx-bootstrap";
 
 @NgModule({
   exports: [
@@ -50,7 +53,12 @@ import {MenusModule} from "@progress/kendo-angular-menu";
     BrowserModule,
     BrowserAnimationsModule,
     GridModule,
-    MenusModule
+    MenusModule,
+    [ModalModule.forRoot()]
   ],
+  declarations: [ModalComponent, ConfirmComponent],
+  providers: [
+    BsModalService
+  ]
 })
 export class SharedModule {}

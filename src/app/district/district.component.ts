@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {District} from "@app/shared/interfaces";
+import {DistrictService} from "@app/shared/services";
+import {ModalService} from "@app/shared/services/modal/modal.service";
+import {DistrictDetailComponent} from "@app/district/component/district-detail/district-detail.component";
 
 @Component({
   selector: 'app-district',
@@ -6,10 +10,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./district.component.css']
 })
 export class DistrictComponent implements OnInit {
-  public district: District = [];
-  constructor() { }
+  public districts: District[] = [];
 
-  ngOnInit(): void {
+  constructor(private districtService: DistrictService,
+              private modalService: ModalService) {
   }
 
+  async ngOnInit(): Promise<void> {
+    await this.reloadGrid();
+  }
+
+  onAddDistrict(item: District) {
+    this.modalService.openModal({
+      title: 'Cập nhật Quận',
+      component: DistrictDetailComponent,
+      // isCustomModalHeader: true,
+      inputs: [{ key: 'department', value: item }],
+      onSubmit: async () => {
+        await this.reloadGrid();
+      }
+    }, { class: 'modal-lg modal-title-status 11', backdrop: 'static' });
+  }
+
+  onOpenDetail(item: any) {
+    this.modalService.openModal({
+      title: 'Cập nhật Quận',
+      component: DistrictDetailComponent,
+      // isCustomModalHeader: true,
+      inputs: [{ key: 'district', value: item.dataItem }],
+      onSubmit: async () => {
+        await this.reloadGrid();
+      }
+    }, { class: 'modal-lg modal-title-status 11', backdrop: 'static' });
+  }
+
+  private async reloadGrid() {
+    this.districts = await this.districtService.getListDistrict();
+  }
 }
