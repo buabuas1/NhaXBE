@@ -23,7 +23,7 @@ export class DistrictComponent implements OnInit {
     await this.reloadGrid();
   }
 
-  onAddDistrict(item: District) {
+  onAddDistrict() {
     this.modalService.openModal({
       title: 'Thêm Quận',
       component: DistrictDetailComponent,
