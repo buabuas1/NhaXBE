@@ -28,7 +28,7 @@ export class DistrictComponent implements OnInit {
       title: 'Thêm Quận',
       component: DistrictDetailComponent,
       // isCustomModalHeader: true,
-      inputs: [{ key: 'department', value: item }],
+      inputs: [{ key: 'department', value: {} }],
       onSubmit: async () => {
         await this.reloadGrid();
       }
