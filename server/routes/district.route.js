@@ -6,7 +6,7 @@ const imgCtrl = require('../controllers/image.controller');
 const requireAdmin = require('../middleware/require-admin');
 const router = express.Router();
 module.exports = router;
-router.use(passport.authenticate('jwt', { session: false }))
+// router.use(passport.authenticate('jwt', { session: false }))
 
 router.route('/')
   .post(asyncHandler(insert));
