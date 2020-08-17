@@ -14,14 +14,15 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
 import {MenuModule} from "@progress/kendo-angular-menu";
 import {ToastrModule} from "ng6-toastr-notifications";
-
+import {BrowserModule} from "@angular/platform-browser";
+import {ModalModule} from "ngx-bootstrap";
 export function appInitializerFactory(authService: AuthService) {
   return () => authService.checkTheUserOnTheFirstLoad();
 }
 
 @NgModule({
   imports: [BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule,
-    MenuModule, ToastrModule.forRoot()
+    MenuModule, ToastrModule.forRoot(), BrowserModule, ModalModule.forRoot()
   ],
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   providers: [

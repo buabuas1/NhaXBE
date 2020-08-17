@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -20,19 +20,18 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GridModule } from '@progress/kendo-angular-grid';
-import {MenusModule} from "@progress/kendo-angular-menu";
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { GridModule } from '@progress/kendo-angular-grid';
+// import {MenusModule} from "@progress/kendo-angular-menu";
 import { ModalComponent } from './component/modal/modal.component';
 import { ConfirmComponent } from './component/confirm/confirm.component';
-import {BsModalService, ModalModule} from "ngx-bootstrap";
+import {BsModalService} from "ngx-bootstrap";
 
 @NgModule({
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
+    // CommonModule,
     MatMenuModule,
     MatTabsModule,
     MatCardModule,
@@ -50,11 +49,9 @@ import {BsModalService, ModalModule} from "ngx-bootstrap";
     MatExpansionModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    GridModule,
-    MenusModule,
-    [ModalModule.forRoot()]
+    // GridModule,
+    // MenusModule,
+    // [ModalModule.forRoot()]
   ],
   declarations: [ModalComponent, ConfirmComponent],
   providers: [
