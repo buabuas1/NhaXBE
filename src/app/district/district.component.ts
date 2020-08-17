@@ -43,7 +43,7 @@ export class DistrictComponent implements OnInit {
       // isCustomModalHeader: true,
       inputs: [{ key: 'district', value: item.dataItem }],
       onSubmit: async (district: District) => {
-        // await this.districtService.save(district);
+        await this.districtService.save(district);
         await this.reloadGrid();
         this.loggerService.success('Thành công');
       }
