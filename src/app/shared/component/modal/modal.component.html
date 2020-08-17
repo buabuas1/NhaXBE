@@ -5,7 +5,7 @@
   </button>
 
 </div>
-<div #modalBody *ngIf="!config.template || config.template.length === 0">
+<div #modalBody [hidden]="!(!config.template || config.template.length === 0)">
 
 </div>
 <div [innerHTML]="config.template" *ngIf="config.template && config.template.length > 0">

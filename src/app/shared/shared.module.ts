@@ -23,9 +23,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { GridModule } from '@progress/kendo-angular-grid';
 // import {MenusModule} from "@progress/kendo-angular-menu";
-import { ModalComponent } from './component/modal/modal.component';
-import { ConfirmComponent } from './component/confirm/confirm.component';
-import {BsModalService} from "ngx-bootstrap";
+// import { ModalComponent } from './component/modal/modal.component';
+// import { ConfirmComponent } from './component/confirm/confirm.component';
+// import {BsModalService} from "ngx-bootstrap";
+// import {BsModalService} from "ngx-bootstrap";
 
 @NgModule({
   exports: [
@@ -51,11 +52,12 @@ import {BsModalService} from "ngx-bootstrap";
     MatProgressBarModule,
     // GridModule,
     // MenusModule,
+    // ModalComponent
     // [ModalModule.forRoot()]
   ],
-  declarations: [ModalComponent, ConfirmComponent],
+  declarations: [],
   providers: [
-    BsModalService
+    // BsModalService
   ]
 })
 export class SharedModule {}
